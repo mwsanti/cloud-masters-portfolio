@@ -38,21 +38,14 @@ Each individual lab directory (`lab-XX-topic-name/`) contains:
 ## 🔗 Explore My Labs:
 
 ### [AWS Labs](aws-labs/)
-* [Lab 01: AWS VPC and Internet Gateway Configuration with CLI](aws-labs/lab-01-vpc-internet-gateway/)
-* [Lab 02: Deploying a Serverless Application with Lambda and S3](aws-labs/lab-02-serverless-app-lambda-s3/)
-* ... (add more links as you add labs)
+* [Lab 01: AWS VPC and Internet Gateway Configuration with CLI](lab-01-vpc-internet-gateway/)
+* [Lab 02: AWS CloudFormation for VPC and Internet Gateway Deployment](lab-02-cloudformation-vpc-igw/)
+* [Lab 03: AWS EC2 Instance Provisioning with Python and Boto3](lab-03-python-ec2-provisioning/)
 
 ### [Azure Labs](azure-labs/)
-* [Lab 01: Azure Virtual Network and Network Security Group Setup](azure-labs/lab-01-vnet-nsg-config/)
-* ... (add more links as you add labs)
+
 
 ### [GCP Labs](gcp-labs/)
-* [Lab 01: Basic Google Compute Engine Instance Management](gcp-labs/lab-01-compute-engine-basics/)
-* ... (add more links as you add labs)
-
-### [Common Cloud Concepts](common-cloud-concepts/) (Optional)
-* [Lab 01: Introduction to Terraform for Multi-Cloud Resource Provisioning](common-cloud-concepts/lab-01-terraform-basics/)
-* ... (add more links as you add labs)
 
 ---
 
