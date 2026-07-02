@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_BOWebServer_name": {
+            "value": null
+        },
+        "disks_BOWebServer_OsDisk_1_8010dc5ab9e340bb98bb3be417dd5e1c_externalid": {
+            "value": null
+        },
+        "networkInterfaces_bowebserver686_z2_externalid": {
+            "value": null
+        }
+    }
+}

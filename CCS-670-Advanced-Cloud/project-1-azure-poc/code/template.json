@@ -1,0 +1,108 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_BOWebServer_name": {
+            "defaultValue": "BOWebServer",
+            "type": "String"
+        },
+        "disks_BOWebServer_OsDisk_1_8010dc5ab9e340bb98bb3be417dd5e1c_externalid": {
+            "defaultValue": "/subscriptions/da1b8f4e-e2c8-4189-a3a6-aee686c9bb7c/resourceGroups/CCS670PoCRG/providers/Microsoft.Compute/disks/BOWebServer_OsDisk_1_8010dc5ab9e340bb98bb3be417dd5e1c",
+            "type": "String"
+        },
+        "networkInterfaces_bowebserver686_z2_externalid": {
+            "defaultValue": "/subscriptions/da1b8f4e-e2c8-4189-a3a6-aee686c9bb7c/resourceGroups/CCS670PoCRG/providers/Microsoft.Network/networkInterfaces/bowebserver686_z2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2024-11-01",
+            "name": "[parameters('virtualMachines_BOWebServer_name')]",
+            "location": "westus3",
+            "zones": [
+                "2"
+            ],
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B1ls"
+                },
+                "additionalCapabilities": {
+                    "hibernationEnabled": false
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "canonical",
+                        "offer": "ubuntu-24_04-lts",
+                        "sku": "server",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_BOWebServer_name'), '_OsDisk_1_8010dc5ab9e340bb98bb3be417dd5e1c')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "StandardSSD_LRS",
+                            "id": "[parameters('disks_BOWebServer_OsDisk_1_8010dc5ab9e340bb98bb3be417dd5e1c_externalid')]"
+                        },
+                        "deleteOption": "Delete",
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [],
+                    "diskControllerType": "SCSI"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_BOWebServer_name')]",
+                    "adminUsername": "azureuser",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": true,
+                        "ssh": {
+                            "publicKeys": [
+                                {
+                                    "path": "/home/azureuser/.ssh/authorized_keys",
+                                    "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDN+ng0XbtGlVlmHHpBCIAODIEf+d5I0LQsu/op05qY5Te2m7dP8fZeUY7kYLEDKDMXSpxTFaOJeygRmTusWsroFJWNJu2XZS5hlPoNk0io+q2Jjv5CrYoJZNC1YQ1gURkP4G2Agv2XEnOIGTCBQKDLXJuS4FeGzdFxOxhxe8w+SlNZhsNpwYX8Z/HkjPqpPn5UGfsHirCcO4D6/SJ7QqV07KGTvu4cLeszBnji888DQsZQR8N9FX23tT1Oiaxm9FcjFU+oEruH6zBCHyVKLX7SPJFm9vYrUDKObL5TbdWM9OmuO2csifDhx+jyJB02H2Jj1K6fpTXgka3P2tV6B2DYhLIdDGdssBc4oHlKjWeeNDzNkPpIQQy93Xa6lxsoUHr52yz+dd8DvT00VFtNdjRAcg05kZuRjlF5qKpw5xQBPgvdllyXwlTGx7Y4soRuRO4GTzlvQb2U9fYqwNnkYjFGorduNoeMY5UzNKxKGaDkLWqONVNOsRh/lyzRv6nCKyk= generated-by-azure"
+                                }
+                            ]
+                        },
+                        "provisionVMAgent": true,
+                        "patchSettings": {
+                            "patchMode": "ImageDefault",
+                            "assessmentMode": "ImageDefault"
+                        }
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "securityProfile": {
+                    "uefiSettings": {
+                        "secureBootEnabled": true,
+                        "vTpmEnabled": true
+                    },
+                    "securityType": "TrustedLaunch"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_bowebserver686_z2_externalid')]",
+                            "properties": {
+                                "deleteOption": "Detach"
+                            }
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true
+                    }
+                }
+            }
+        }
+    ]
+}

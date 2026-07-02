@@ -1,0 +1,8 @@
+# Never commit secrets or state — these can contain plaintext passwords/keys
+*.tfvars
+*.tfvars.json
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
